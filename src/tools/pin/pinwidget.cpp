@@ -169,6 +169,22 @@ bool PinWidget::gestureEvent(QGestureEvent* event)
     return true;
 }
 
+void PinWidget::rotateLeft()
+{
+    m_sizeChanged = true;
+
+    auto rotateTransform = QTransform().rotate(270);
+    m_pixmap = m_pixmap.transformed(rotateTransform);
+}
+
+void PinWidget::rotateRight()
+{
+    m_sizeChanged = true;
+
+    auto rotateTransform = QTransform().rotate(90);
+    m_pixmap = m_pixmap.transformed(rotateTransform);
+}
+
 bool PinWidget::event(QEvent* event)
 {
     if (event->type() == QEvent::Gesture) {
@@ -236,6 +252,26 @@ void PinWidget::showContextMenu(const QPoint& pos)
       &saveToFileAction, &QAction::triggered, this, &PinWidget::saveToFile);
     contextMenu.addAction(&saveToFileAction);
 
+<<<<<<< Updated upstream
+=======
+    contextMenu.addSeparator();
+
+    QAction rotateRightAction(tr("Rotate Right"), this);
+    connect(
+      &rotateRightAction, &QAction::triggered, this, &PinWidget::rotateRight);
+    contextMenu.addAction(&rotateRightAction);
+
+    QAction rotateLeftAction(tr("Rotate Left"), this);
+    connect(
+      &rotateLeftAction, &QAction::triggered, this, &PinWidget::rotateLeft);
+    contextMenu.addAction(&rotateLeftAction);
+
+    QAction closePinAction(tr("Close"), this);
+    connect(&closePinAction, &QAction::triggered, this, &PinWidget::closePin);
+    contextMenu.addSeparator();
+    contextMenu.addAction(&closePinAction);
+
+>>>>>>> Stashed changes
     contextMenu.exec(mapToGlobal(pos));
 }
 

@@ -33,6 +33,14 @@ private:
     bool gestureEvent(QGestureEvent* event);
     bool scrollEvent(QWheelEvent* e);
     void pinchTriggered(QPinchGesture*);
+<<<<<<< Updated upstream
+=======
+
+    void rotateLeft();
+    void rotateRight();
+
+    void closePin();
+>>>>>>> Stashed changes
 
     QPixmap m_pixmap;
     QVBoxLayout* m_layout;
@@ -44,6 +52,7 @@ private:
 
     bool m_expanding{ false };
     qreal m_scaleFactor{ 1 };
+    unsigned int m_rotateFactor{ 0 };
     qreal m_currentStepScaleFactor{ 1 };
     bool m_sizeChanged{ false };
 
